@@ -1,0 +1,256 @@
+<template id="tpl-14-interview-faq">
+  <style>
+
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_400_italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: block; }
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+#root {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  container-type: size;
+  font-family: 'Inter', sans-serif;
+  font-variant-numeric: lining-nums;
+  color: #141413;
+}
+.f14-bg {
+  position: absolute;
+  inset: 0;
+  background: #FAF9F5;
+}
+.f14-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 896px;
+  padding: 46px 76px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.f14-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5E5A50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.f14-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 30px;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  border: 2px solid rgba(20, 20, 19, 0.24);
+  background: #EFE9DE;
+  color: #141413;
+  font-weight: 700;
+}
+.f14-pill-hard {
+  background: #F7E1DC;
+  border-color: #B8483A;
+  color: #B8483A;
+}
+.f14-pill-green {
+  background: #E3EEDF;
+  border-color: #5A8A55;
+  color: #5A8A55;
+}
+.f14-serif {
+  font-family: 'EB Garamond', serif;
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #141413;
+}
+.f14-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+.f14-tile {
+  background: #EFE9DE;
+  border: 2px solid rgba(20, 20, 19, 0.14);
+  border-radius: 20px;
+  padding: 26px 34px;
+}
+.f14-card {
+  background: #FAF9F5;
+  border: 2px solid rgba(20, 20, 19, 0.24);
+  border-radius: 20px;
+  padding: 26px 34px;
+  box-shadow: 0 2px 6px rgba(20,20,19,0.06), 0 8px 24px rgba(20,20,19,0.04);
+}
+.f14-navy-card {
+  background: #181715;
+  border: 2px solid rgba(250,249,245,0.16);
+  border-radius: 20px;
+  padding: 28px 36px;
+  color: #FAF9F5;
+}
+.f14-split-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+.f14-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+.f14-arr-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 22px 22px;
+  background: #EFE9DE;
+  border: 2px solid rgba(20, 20, 19, 0.14);
+  border-radius: 20px;
+  position: relative;
+}
+.f14-acell {
+  flex: 1;
+  text-align: center;
+  background: #FAF9F5;
+  border: 4px solid rgba(20, 20, 19, 0.24);
+  border-radius: 16px;
+  padding: 16px 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.f14-acell-v { font-size: 62px; font-weight: 700; display: block; line-height: 1.06; }
+.f14-acell-idx { font-size: 28px; color: #5E5A50; display: block; margin-top: 6px; font-weight: 600; white-space: nowrap; }
+.f14-acell-win { background: #F5E5DD; border-color: #CC785C; }
+.f14-acell-max { background: #E3EEDF; border-color: #5A8A55; }
+.f14-acell-max .f14-acell-v { color: #5A8A55; }
+.f14-acell-cur { background: #DBEAFE; border-color: #2563EB; }
+.f14-acell-cur .f14-acell-v { color: #2563EB; }
+.f14-acell-kill { background: #F7E1DC; border-color: #B8483A; opacity: 0.62; }
+.f14-acell-kill .f14-acell-v { color: #B8483A; text-decoration: line-through; }
+.f14-acell-dim { opacity: 0.44; }
+
+.f14-dq-tube {
+  background: #FAF9F5;
+  border: 4px solid rgba(20, 20, 19, 0.24);
+  border-left: 10px dashed #B8483A;
+  border-right: 10px dashed #2563EB;
+  border-radius: 20px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.f14-dq-chip {
+  padding: 12px 24px;
+  border-radius: 16px;
+  border: 4px solid #7C3AED;
+  background: #EDE9FE;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 42px;
+  font-weight: 700;
+  color: #7C3AED;
+  text-align: center;
+  line-height: 1.15;
+  display: inline-flex;
+  align-items: center;
+}
+.f14-dq-head { border-color: #5A8A55; background: #E3EEDF; color: #5A8A55; }
+.f14-dq-kill { border-color: #B8483A; background: #F7E1DC; color: #B8483A; text-decoration: line-through; opacity: 0.72; }
+.f14-callout {
+  background: #ECE3D4;
+  border-left: 8px solid #CC785C;
+  border-radius: 14px;
+  padding: 20px 30px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #141413;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.f14-pit { padding: 14px 18px; border-radius: 12px; background: #F7E1DC; border: 2px solid #B8483A; font-size: 32px; font-weight: 700; color: #B8483A; display: flex; align-items: center; }
+
+  </style>
+  <div id="root" lang="zh-Hant-TW" data-composition-id="14-interview-faq" data-start="0" data-duration="31.97" data-width="1920" data-height="1080">
+    <div class="clip f14-bg" id="f14-bg" data-start="0" data-duration="31.97" data-track-index="0"></div>
+    <div class="clip f14-stage" id="f14-stage" data-start="0" data-duration="31.97" data-track-index="1">
+
+      <div class="f14-kicker" id="f14-kicker">
+        <span><svg style="display:inline-block;vertical-align:-3px;margin-right:12px;" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 1v22M1 12h22M4.2 4.2l15.6 15.6M19.8 4.2L4.2 19.8" stroke="#CC785C" stroke-width="3.2" stroke-linecap="round"/></svg>INTERVIEW SURVIVAL KIT · 面試實戰保命錦囊</span>
+        <span class="f14-pill">最後三招上機必備</span>
+      </div>
+
+      <div id="f14-title">
+        <div class="f14-serif" style="font-size:74px;">備案解法 · 常見變形追問 · 新手三大地雷</div>
+      </div>
+
+      <div class="f14-triptych" style="min-height: 490px;">
+        <div class="f14-tile" id="f14-c1" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#9A4E34; font-weight:700;">① 忘記 Deque 的備案</div>
+            <div style="font-size:48px; font-weight:700; line-height:1.25; margin-top:14px;">Max-Heap<br>＋ 延遲刪除</div>
+            <div style="font-size:33px; color:#5E5A50; margin-top:16px; line-height:1.45;">將 {nums[i], i} 放進大頂堆，僅當堆頂過期才彈出</div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:34px; color:#141413; font-weight:700; background:#FAF9F5; padding:14px 20px; border-radius:12px; border:2px solid rgba(20, 20, 19, 0.24);">O(n log n) 穩過不超時</div>
+        </div>
+
+        <div class="f14-tile" id="f14-c2" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#5A8A55; font-weight:700;">② 追問：視窗最小值？</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:66px; font-weight:700; margin-top:26px; display:flex; align-items:center;">
+              &lt;= <span id="f14-flip" style="color:#5A8A55; display:inline-flex; align-items:center;"><svg style="display:inline-block;vertical-align:-5px;margin:0 6px;" width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-5-6l6 6-6 6" stroke="#5A8A55" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> &gt;=</span>
+            </div>
+            <div style="font-size:34px; color:#5E5A50; margin-top:16px; line-height:1.45;">隊尾淘汰條件反轉成大於等於，立刻改為「單調遞增」佇列</div>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#5A8A55; font-weight:700; background:#E3EEDF; padding:14px 20px; border-radius:12px;">只改 1 個符號一秒搞定</div>
+        </div>
+
+        <div class="f14-card" id="f14-c3" style="border-color:#B8483A; display:flex; flex-direction:column; justify-content:space-between;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#B8483A; font-weight:700;">③ 新手 3 大地雷檢查</div>
+          <div class="f14-pit" id="f14-p1"><svg style="display:inline-block;vertical-align:-4px;margin-right:8px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#B8483A" stroke-width="3.4" stroke-linecap="round"/></svg>直接存數值（無法判過期）</div>
+          <div class="f14-pit" id="f14-p2"><svg style="display:inline-block;vertical-align:-4px;margin-right:8px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#B8483A" stroke-width="3.4" stroke-linecap="round"/></svg>取值忘寫 !dq.empty()</div>
+          <div class="f14-pit" id="f14-p3"><svg style="display:inline-block;vertical-align:-4px;margin-right:8px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#B8483A" stroke-width="3.4" stroke-linecap="round"/></svg>i &lt; k - 1 就搶記答案</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#f14-kicker", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0);
+      tl.fromTo("#f14-title", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+      tl.fromTo(["#f14-c1", "#f14-c2", "#f14-c3"], { opacity: 0.25, y: 14 }, { opacity: 0.32, y: 0, duration: 0.45 }, 0.4);
+      tl.to("#f14-c1", { opacity: 1, duration: 0.6 }, 4.0);
+      tl.to("#f14-c2", { opacity: 1, duration: 0.6 }, 14.0);
+      tl.fromTo("#f14-flip", { scale: 0.8 }, { scale: 1.12, duration: 0.45, ease: "power3.out" }, 18.8);
+      tl.to("#f14-flip", { scale: 1.0, duration: 0.3 }, 19.6);
+      tl.to("#f14-c3", { opacity: 1, duration: 0.55 }, 22.3);
+      tl.fromTo("#f14-p1", { opacity: 0.35, x: 14 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 24.7);
+      tl.fromTo("#f14-p2", { opacity: 0.35, x: 14 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 25.8);
+      tl.fromTo("#f14-p3", { opacity: 0.35, x: 14 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 27.5);
+
+      tl.to({}, { duration: 31.47 }, 0);
+      window.__timelines["14-interview-faq"] = tl;
+    })();
+  </script>
+</template>

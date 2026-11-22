@@ -1,0 +1,255 @@
+<template id="tpl-05-why-index">
+  <style>
+
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_400_italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: block; }
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+#root {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  container-type: size;
+  font-family: 'Inter', sans-serif;
+  font-variant-numeric: lining-nums;
+  color: #141413;
+}
+.f05-bg {
+  position: absolute;
+  inset: 0;
+  background: #FAF9F5;
+}
+.f05-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 896px;
+  padding: 46px 76px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.f05-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5E5A50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.f05-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 30px;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  border: 2px solid rgba(20, 20, 19, 0.24);
+  background: #EFE9DE;
+  color: #141413;
+  font-weight: 700;
+}
+.f05-pill-hard {
+  background: #F7E1DC;
+  border-color: #B8483A;
+  color: #B8483A;
+}
+.f05-pill-green {
+  background: #E3EEDF;
+  border-color: #5A8A55;
+  color: #5A8A55;
+}
+.f05-serif {
+  font-family: 'EB Garamond', serif;
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #141413;
+}
+.f05-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+.f05-tile {
+  background: #EFE9DE;
+  border: 2px solid rgba(20, 20, 19, 0.14);
+  border-radius: 20px;
+  padding: 26px 34px;
+}
+.f05-card {
+  background: #FAF9F5;
+  border: 2px solid rgba(20, 20, 19, 0.24);
+  border-radius: 20px;
+  padding: 26px 34px;
+  box-shadow: 0 2px 6px rgba(20,20,19,0.06), 0 8px 24px rgba(20,20,19,0.04);
+}
+.f05-navy-card {
+  background: #181715;
+  border: 2px solid rgba(250,249,245,0.16);
+  border-radius: 20px;
+  padding: 28px 36px;
+  color: #FAF9F5;
+}
+.f05-split-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+.f05-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+.f05-arr-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 22px 22px;
+  background: #EFE9DE;
+  border: 2px solid rgba(20, 20, 19, 0.14);
+  border-radius: 20px;
+  position: relative;
+}
+.f05-acell {
+  flex: 1;
+  text-align: center;
+  background: #FAF9F5;
+  border: 4px solid rgba(20, 20, 19, 0.24);
+  border-radius: 16px;
+  padding: 16px 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.f05-acell-v { font-size: 62px; font-weight: 700; display: block; line-height: 1.06; }
+.f05-acell-idx { font-size: 28px; color: #5E5A50; display: block; margin-top: 6px; font-weight: 600; white-space: nowrap; }
+.f05-acell-win { background: #F5E5DD; border-color: #CC785C; }
+.f05-acell-max { background: #E3EEDF; border-color: #5A8A55; }
+.f05-acell-max .f05-acell-v { color: #5A8A55; }
+.f05-acell-cur { background: #DBEAFE; border-color: #2563EB; }
+.f05-acell-cur .f05-acell-v { color: #2563EB; }
+.f05-acell-kill { background: #F7E1DC; border-color: #B8483A; opacity: 0.62; }
+.f05-acell-kill .f05-acell-v { color: #B8483A; text-decoration: line-through; }
+.f05-acell-dim { opacity: 0.44; }
+
+.f05-dq-tube {
+  background: #FAF9F5;
+  border: 4px solid rgba(20, 20, 19, 0.24);
+  border-left: 10px dashed #B8483A;
+  border-right: 10px dashed #2563EB;
+  border-radius: 20px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.f05-dq-chip {
+  padding: 12px 24px;
+  border-radius: 16px;
+  border: 4px solid #7C3AED;
+  background: #EDE9FE;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 42px;
+  font-weight: 700;
+  color: #7C3AED;
+  text-align: center;
+  line-height: 1.15;
+  display: inline-flex;
+  align-items: center;
+}
+.f05-dq-head { border-color: #5A8A55; background: #E3EEDF; color: #5A8A55; }
+.f05-dq-kill { border-color: #B8483A; background: #F7E1DC; color: #B8483A; text-decoration: line-through; opacity: 0.72; }
+.f05-callout {
+  background: #ECE3D4;
+  border-left: 8px solid #CC785C;
+  border-radius: 14px;
+  padding: 20px 30px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #141413;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.f05-layer { border-radius: 16px; padding: 18px 24px; border: 2px solid rgba(20, 20, 19, 0.24); background: #FAF9F5; }
+
+  </style>
+  <div id="root" lang="zh-Hant-TW" data-composition-id="05-why-index" data-start="0" data-duration="36" data-width="1920" data-height="1080">
+    <div class="clip f05-bg" id="f05-bg" data-start="0" data-duration="36" data-track-index="0"></div>
+    <div class="clip f05-stage" id="f05-stage" data-start="0" data-duration="36" data-track-index="1">
+
+      <div class="f05-kicker" id="f05-kicker">
+        <span><svg style="display:inline-block;vertical-align:-3px;margin-right:12px;" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 1v22M1 12h22M4.2 4.2l15.6 15.6M19.8 4.2L4.2 19.8" stroke="#CC785C" stroke-width="3.2" stroke-linecap="round"/></svg>LAB 1 · 為什麼要寫 nums[dq.back()]？</span>
+        <span class="f05-pill">存 index，不存數值！</span>
+      </div>
+
+      <div id="f05-title">
+        <div class="f05-serif" style="font-size:74px;">剝洋蔥看懂「門牌 vs 數值」，並用反例秒懂為何存索引</div>
+      </div>
+
+      <div class="f05-split-2">
+        <div class="f05-tile" id="f05-left" style="display:flex; flex-direction:column; justify-content:space-between; gap:14px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#7C3AED; font-weight:700;">① 剝洋蔥兩步查值</div>
+          <div class="f05-layer" id="f05-onion1" style="border-color:#7C3AED;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; color:#7C3AED;">內層：dq.back() <svg style="display:inline-block;vertical-align:-5px;margin:0 6px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-5-6l6 6-6 6" stroke="#7C3AED" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> 2</div>
+            <div style="font-size:32px; color:#5E5A50; font-weight:600;">先從隊尾取出「位置門牌」idx 2</div>
+          </div>
+          <div class="f05-layer" id="f05-onion2" style="border-color:#2563EB;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; color:#2563EB;">外層：nums[2] <svg style="display:inline-block;vertical-align:-5px;margin:0 6px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-5-6l6 6-6 6" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> -1</div>
+            <div style="font-size:32px; color:#5E5A50; font-weight:600;">再拿門牌套進 nums 查出真正數字</div>
+          </div>
+          <div style="font-size:34px; font-weight:700; color:#141413;">結論：寫法雖長，其實只是「拿位置去查數」！</div>
+        </div>
+
+        <div class="f05-card" id="f05-right" style="border-color:#CC785C; display:flex; flex-direction:column; justify-content:space-between; gap:14px;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#9A4E34; font-weight:700;">② 反例實驗：nums = [5, 1, 5], k = 2</div>
+          <div style="display:flex; gap:16px;">
+            <div class="f05-acell f05-acell-kill" style="padding:12px 8px; opacity:0.85;"><span class="f05-acell-v" style="font-size:52px;">5</span><span class="f05-acell-idx" style="font-size:28px; color:#B8483A;">idx 0 出框</span></div>
+            <div class="f05-acell f05-acell-win" style="padding:12px 8px;"><span class="f05-acell-v" style="font-size:52px;">1</span><span class="f05-acell-idx" style="font-size:28px;">idx 1</span></div>
+            <div class="f05-acell f05-acell-max" style="padding:12px 8px;"><span class="f05-acell-v" style="font-size:52px;">5</span><span class="f05-acell-idx" style="font-size:28px; color:#5A8A55;">idx 2 框內</span></div>
+          </div>
+          <div id="f05-bad" style="background:#F7E1DC; border:2px solid #B8483A; border-radius:14px; padding:14px 20px;">
+            <div style="font-size:33px; font-weight:700; color:#B8483A; display:flex; align-items:center;"><svg style="display:inline-block;vertical-align:-4px;margin-right:8px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#B8483A" stroke-width="3.4" stroke-linecap="round"/></svg>若只存值 dq=[5]：分不清是 0 號還是 2 號！</div>
+          </div>
+          <div id="f05-good" style="background:#E3EEDF; border:2px solid #5A8A55; border-radius:14px; padding:14px 20px;">
+            <div style="font-size:33px; font-weight:700; color:#5A8A55; display:flex; align-items:center;"><svg style="display:inline-block;vertical-align:-4px;margin-right:8px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#5A8A55" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>存索引 dq=[0, 2]：0 &lt; 1 一眼判出過期！</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#f05-kicker", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0);
+      tl.fromTo("#f05-title", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+      tl.fromTo(["#f05-left", "#f05-right"], { opacity: 0.25, y: 14 }, { opacity: 0.3, y: 0, duration: 0.45, ease: "power3.out" }, 0.4);
+      tl.to("#f05-left", { opacity: 1, duration: 0.55, ease: "power3.out" }, 2.6);
+      tl.fromTo("#f05-onion1", { opacity: 0.35 }, { opacity: 1, duration: 0.5, ease: "power3.out" }, 8.2);
+      tl.fromTo("#f05-onion2", { opacity: 0.35 }, { opacity: 1, duration: 0.5, ease: "power3.out" }, 10.9);
+      tl.to("#f05-right", { opacity: 1, duration: 0.6, ease: "power3.out" }, 17.6);
+      tl.fromTo("#f05-bad", { opacity: 0.25 }, { opacity: 1, duration: 0.5, ease: "power3.out" }, 22.3);
+      tl.fromTo("#f05-good", { opacity: 0.25 }, { opacity: 1, duration: 0.55, ease: "power3.out" }, 29.8);
+
+      tl.to({}, { duration: 35.5 }, 0);
+      window.__timelines["05-why-index"] = tl;
+    })();
+  </script>
+</template>

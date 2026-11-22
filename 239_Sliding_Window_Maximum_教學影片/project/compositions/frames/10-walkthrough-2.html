@@ -1,0 +1,296 @@
+<template id="tpl-10-walkthrough-2">
+  <style>
+
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_400_italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: block; }
+@font-face { font-family: 'EB Garamond'; src: url('assets/fonts/EBGaramond_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter'; src: url('assets/fonts/Inter_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'JetBrains Mono'; src: url('assets/fonts/JetBrainsMono_700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+#root {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  container-type: size;
+  font-family: 'Inter', sans-serif;
+  font-variant-numeric: lining-nums;
+  color: #141413;
+}
+.f10-bg {
+  position: absolute;
+  inset: 0;
+  background: #FAF9F5;
+}
+.f10-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 896px;
+  padding: 46px 76px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.f10-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5E5A50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.f10-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 30px;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  border: 2px solid rgba(20, 20, 19, 0.24);
+  background: #EFE9DE;
+  color: #141413;
+  font-weight: 700;
+}
+.f10-pill-hard {
+  background: #F7E1DC;
+  border-color: #B8483A;
+  color: #B8483A;
+}
+.f10-pill-green {
+  background: #E3EEDF;
+  border-color: #5A8A55;
+  color: #5A8A55;
+}
+.f10-serif {
+  font-family: 'EB Garamond', serif;
+  font-variant-numeric: lining-nums;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #141413;
+}
+.f10-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+.f10-tile {
+  background: #EFE9DE;
+  border: 2px solid rgba(20, 20, 19, 0.14);
+  border-radius: 20px;
+  padding: 26px 34px;
+}
+.f10-card {
+  background: #FAF9F5;
+  border: 2px solid rgba(20, 20, 19, 0.24);
+  border-radius: 20px;
+  padding: 26px 34px;
+  box-shadow: 0 2px 6px rgba(20,20,19,0.06), 0 8px 24px rgba(20,20,19,0.04);
+}
+.f10-navy-card {
+  background: #181715;
+  border: 2px solid rgba(250,249,245,0.16);
+  border-radius: 20px;
+  padding: 28px 36px;
+  color: #FAF9F5;
+}
+.f10-split-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+.f10-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+.f10-arr-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 22px 22px;
+  background: #EFE9DE;
+  border: 2px solid rgba(20, 20, 19, 0.14);
+  border-radius: 20px;
+  position: relative;
+}
+.f10-acell {
+  flex: 1;
+  text-align: center;
+  background: #FAF9F5;
+  border: 4px solid rgba(20, 20, 19, 0.24);
+  border-radius: 16px;
+  padding: 16px 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.f10-acell-v { font-size: 62px; font-weight: 700; display: block; line-height: 1.06; }
+.f10-acell-idx { font-size: 28px; color: #5E5A50; display: block; margin-top: 6px; font-weight: 600; white-space: nowrap; }
+.f10-acell-win { background: #F5E5DD; border-color: #CC785C; }
+.f10-acell-max { background: #E3EEDF; border-color: #5A8A55; }
+.f10-acell-max .f10-acell-v { color: #5A8A55; }
+.f10-acell-cur { background: #DBEAFE; border-color: #2563EB; }
+.f10-acell-cur .f10-acell-v { color: #2563EB; }
+.f10-acell-kill { background: #F7E1DC; border-color: #B8483A; opacity: 0.62; }
+.f10-acell-kill .f10-acell-v { color: #B8483A; text-decoration: line-through; }
+.f10-acell-dim { opacity: 0.44; }
+
+.f10-dq-tube {
+  background: #FAF9F5;
+  border: 4px solid rgba(20, 20, 19, 0.24);
+  border-left: 10px dashed #B8483A;
+  border-right: 10px dashed #2563EB;
+  border-radius: 20px;
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.f10-dq-chip {
+  padding: 12px 24px;
+  border-radius: 16px;
+  border: 4px solid #7C3AED;
+  background: #EDE9FE;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 42px;
+  font-weight: 700;
+  color: #7C3AED;
+  text-align: center;
+  line-height: 1.15;
+  display: inline-flex;
+  align-items: center;
+}
+.f10-dq-head { border-color: #5A8A55; background: #E3EEDF; color: #5A8A55; }
+.f10-dq-kill { border-color: #B8483A; background: #F7E1DC; color: #B8483A; text-decoration: line-through; opacity: 0.72; }
+.f10-callout {
+  background: #ECE3D4;
+  border-left: 8px solid #CC785C;
+  border-radius: 14px;
+  padding: 20px 30px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #141413;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.f10-phase { background: #FAF9F5; border: 3px solid rgba(20, 20, 19, 0.24); border-radius: 18px; padding: 20px 26px; display: flex; flex-direction: column; justify-content: space-between; }
+
+  </style>
+  <div id="root" lang="zh-Hant-TW" data-composition-id="10-walkthrough-2" data-start="0" data-duration="34.25" data-width="1920" data-height="1080">
+    <div class="clip f10-bg" id="f10-bg" data-start="0" data-duration="34.25" data-track-index="0"></div>
+    <div class="clip f10-stage" id="f10-stage" data-start="0" data-duration="34.25" data-track-index="1">
+
+      <div class="f10-kicker" id="f10-kicker">
+        <span><svg style="display:inline-block;vertical-align:-3px;margin-right:12px;" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 1v22M1 12h22M4.2 4.2l15.6 15.6M19.8 4.2L4.2 19.8" stroke="#CC785C" stroke-width="3.2" stroke-linecap="round"/></svg>官方範例實戰 (2/3) · 全場高潮 i = 3 <svg style="display:inline-block;vertical-align:-5px;margin:0 6px;" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-5-6l6 6-6 6" stroke="#141413" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> i = 4</span>
+        <span class="f10-pill f10-pill-hard" id="f10-l-badge">左界 L = 4 - 3 + 1 = 2</span>
+      </div>
+
+      <div id="f10-arr-wrap">
+        <div class="f10-arr-row">
+          <div class="f10-acell f10-acell-dim"><span class="f10-acell-v">1</span><span class="f10-acell-idx">0</span></div>
+          <div class="f10-acell f10-acell-win" id="f10-c1"><span class="f10-acell-v">3</span><span class="f10-acell-idx">1 <svg style="display:inline-block;vertical-align:-4px;margin-left:8px;" width="22" height="22" viewBox="0 0 24 24" fill="#CC785C"><path d="M3 18h18v2H3v-2zm0-2l2-9 4.5 4.5L12 5l2.5 6.5L19 7l2 9H3z"/></svg></span></div>
+          <div class="f10-acell f10-acell-win" id="f10-c2"><span class="f10-acell-v">-1</span><span class="f10-acell-idx">2</span></div>
+          <div class="f10-acell f10-acell-win" id="f10-c3"><span class="f10-acell-v">-3</span><span class="f10-acell-idx">3</span></div>
+          <div class="f10-acell f10-acell-dim" id="f10-c4"><span class="f10-acell-v">5</span><span class="f10-acell-idx">4</span></div>
+          <div class="f10-acell f10-acell-dim"><span class="f10-acell-v">3</span><span class="f10-acell-idx">5</span></div>
+          <div class="f10-acell f10-acell-dim"><span class="f10-acell-v">6</span><span class="f10-acell-idx">6</span></div>
+          <div class="f10-acell f10-acell-dim"><span class="f10-acell-v">7</span><span class="f10-acell-idx">7</span></div>
+        </div>
+      </div>
+
+      <div class="f10-split-2" style="grid-template-columns: 0.92fr 1.38fr; gap: 26px;">
+        <div class="f10-phase" id="f10-card3" style="border-color:#2563EB;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#2563EB; font-weight:700;">i = 3 · val = -3 (L = 1)</div>
+          <div style="font-size:33px; font-weight:700; line-height:1.45;">
+            ① 隊頭 <span class="f10-mono">1 &gt;= 1</span> 還沒出框<br>
+            ② <span class="f10-mono">-3 &lt; -1</span> 留著排隊尾<br>
+            dq = [ 1:3 <svg style="display:inline-block;vertical-align:-4px;margin-left:8px;" width="24" height="24" viewBox="0 0 24 24" fill="#5A8A55"><path d="M3 18h18v2H3v-2zm0-2l2-9 4.5 4.5L12 5l2.5 6.5L19 7l2 9H3z"/></svg>, 2:-1, 3:-3 ]
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:34px; font-weight:700; color:#5A8A55;"><svg style="display:inline-block;vertical-align:-5px;margin:0 6px;" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-5-6l6 6-6 6" stroke="#5A8A55" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>res = [ 3, <span id="f10-res-3b" style="background:#E3EEDF; padding:4px 14px; border-radius:10px;">3</span> ]</div>
+        </div>
+
+        <div class="f10-phase" id="f10-card4" style="border-color:#CC785C; background:#FDF7F3;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:32px; color:#9A4E34; font-weight:700;">高潮 i = 4 · val = 5 (左界推進到 L = 2！)</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div id="f10-act1" style="background:#F7E1DC; border:2px solid #B8483A; border-radius:12px; padding:10px 18px; font-size:32px; font-weight:700; color:#B8483A;">
+              STEP 1 前門除老：隊頭 1 &lt; 2 <svg style="display:inline-block;vertical-align:-5px;margin:0 6px;" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-5-6l6 6-6 6" stroke="#B8483A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> 1:3 退休 pop_front!
+            </div>
+            <div id="f10-act2" style="background:#F5E5DD; border:2px solid #CC785C; border-radius:12px; padding:10px 18px; font-size:32px; font-weight:700; color:#9A4E34;">
+              STEP 2 後門全清：5 &gt;= -3 且 -1 <svg style="display:inline-block;vertical-align:-5px;margin:0 6px;" width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12h15m-5-6l6 6-6 6" stroke="#9A4E34" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> 連踢兩人 pop_back!
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:34px; font-weight:700; color:#5A8A55;">dq = [ 4:5 <svg style="display:inline-block;vertical-align:-4px;margin-left:8px;" width="24" height="24" viewBox="0 0 24 24" fill="#5A8A55"><path d="M3 18h18v2H3v-2zm0-2l2-9 4.5 4.5L12 5l2.5 6.5L19 7l2 9H3z"/></svg> ]</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:34px; font-weight:700;">res = [ 3, 3, <span id="f10-res-5" style="background:#E3EEDF; color:#5A8A55; padding:4px 14px; border-radius:10px;">5</span> ]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="f10-dq-tube" id="f10-tube">
+        <span class="f10-dq-chip f10-dq-head" id="f10-chip-13" style="font-size:38px; padding:10px 20px;">1:3 隊長</span>
+        <span class="f10-dq-chip f10-dq-head" id="f10-chip-45" style="font-size:40px; padding:10px 24px;">4:5 <svg style="display:inline-block;vertical-align:-4px;margin-left:8px;" width="28" height="28" viewBox="0 0 24 24" fill="#5A8A55"><path d="M3 18h18v2H3v-2zm0-2l2-9 4.5 4.5L12 5l2.5 6.5L19 7l2 9H3z"/></svg></span>
+        <div style="display:flex; gap:12px;">
+          <span class="f10-dq-chip" id="f10-chip-2m1" style="font-size:38px; padding:10px 20px;">2:-1</span>
+          <span class="f10-dq-chip" id="f10-chip-3m3" style="font-size:38px; padding:10px 20px;">3:-3</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#f10-kicker", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0);
+      tl.fromTo("#f10-arr-wrap", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+      tl.fromTo(["#f10-card3", "#f10-card4", "#f10-tube"], { opacity: 0.25 }, { opacity: 0.35, duration: 0.4 }, 0.3);
+      // pre-existing deque members visible inside tube!
+      tl.to("#f10-tube", { opacity: 1, duration: 0.45 }, 1.2);
+      tl.fromTo("#f10-chip-45", { opacity: 0.15, scale: 0.9 }, { opacity: 0.15, scale: 0.9, duration: 0.2 }, 0);
+
+      // i = 3 (3.25s)
+      tl.to("#f10-card3", { opacity: 1, duration: 0.55 }, 3.2);
+      tl.to("#f10-c3", { backgroundColor: "#DBEAFE", borderColor: "#2563EB", duration: 0.4 }, 4.2);
+      tl.fromTo("#f10-chip-3m3", { opacity: 0.25, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.45 }, 9.2);
+      tl.to("#f10-res-3b", { scale: 1.12, duration: 0.35 }, 12.9);
+      tl.to("#f10-res-3b", { scale: 1.0, duration: 0.3 }, 13.5);
+
+      // i = 4 climax (16.04s)
+      tl.to("#f10-card4", { opacity: 1, duration: 0.55 }, 16.0);
+      tl.to("#f10-c1", { backgroundColor: "#F7E1DC", borderColor: "#B8483A", opacity: 0.55, duration: 0.45 }, 16.5);
+      tl.to("#f10-c4", { backgroundColor: "#E3EEDF", borderColor: "#5A8A55", opacity: 1, duration: 0.45 }, 17.4);
+      tl.to("#f10-l-badge", { scale: 1.08, duration: 0.35 }, 19.3);
+      tl.to("#f10-l-badge", { scale: 1.0, duration: 0.3 }, 20.1);
+
+      // STEP 1: pop_front 1:3 (20.68s)
+      tl.fromTo("#f10-act1", { opacity: 0.35 }, { opacity: 1, duration: 0.45 }, 20.6);
+      tl.to("#f10-chip-13", { backgroundColor: "#F7E1DC", borderColor: "#B8483A", color: "#B8483A", x: -24, opacity: 0.45, duration: 0.55 }, 21.6);
+
+      // STEP 2: pop_back 3:-3 & 2:-1 (25.90s)
+      tl.fromTo("#f10-act2", { opacity: 0.35 }, { opacity: 1, duration: 0.45 }, 25.9);
+      tl.to(["#f10-chip-3m3", "#f10-chip-2m1"], { backgroundColor: "#F7E1DC", borderColor: "#B8483A", color: "#B8483A", x: 24, opacity: 0.45, duration: 0.45, stagger: 0.35 }, 26.8);
+
+      // 4:5 takes crown + res=[3,3,5] (30.11s)
+      tl.to("#f10-chip-45", { opacity: 1, scale: 1.04, duration: 0.5 }, 30.1);
+      tl.to("#f10-chip-45", { scale: 1.0, duration: 0.3 }, 31.0);
+      tl.to("#f10-res-5", { scale: 1.15, duration: 0.35 }, 31.6);
+      tl.to("#f10-res-5", { scale: 1.0, duration: 0.3 }, 32.3);
+
+      tl.to({}, { duration: 33.75 }, 0);
+      window.__timelines["10-walkthrough-2"] = tl;
+    })();
+  </script>
+</template>

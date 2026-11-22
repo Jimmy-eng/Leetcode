@@ -1,0 +1,8 @@
+# Local caches, temp bundles, and reproducible dependencies
+.cache/
+.tmp/
+.py_libs/
+project/node_modules/
+project/snapshots/
+project/renders/
+*.tar.gz

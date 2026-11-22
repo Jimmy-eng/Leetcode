@@ -1,0 +1,1178 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeetCode 239 · Sliding Window Maximum — YouTube 16:9 Storyboard Sketch Sheet v2</title>
+  <style>
+    :root {
+      --cream: #FAF9F5;
+      --tile: #EFE9DE;
+      --tile-strong: #ECE3D4;
+      --ink: #141413;
+      --muted: #5E5A50;
+      --faint: #989285;
+      --coral: #CC785C;
+      --coral-soft: #F5E5DD;
+      --navy: #181715;
+      --navy-soft: #1F1E1B;
+      --navy-elev: #252320;
+      --teal: #5DB8A6;
+      --amber: #E8A55A;
+      --green: #5A8A55;
+      --green-soft: #E3EEDF;
+      --red: #B8483A;
+      --red-soft: #F7E1DC;
+      --blue: #2563EB;
+      --blue-soft: #DBEAFE;
+      --purple: #7C3AED;
+      --purple-soft: #EDE9FE;
+      --hair: rgba(20, 20, 19, 0.14);
+      --hair-strong: rgba(20, 20, 19, 0.24);
+      --shadow: 0 1px 3px rgba(20, 20, 19, 0.08), 0 6px 22px rgba(20, 20, 19, 0.06);
+      --serif: "EB Garamond", "Noto Serif TC", Georgia, serif;
+      --sans: "Inter", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      --mono: "JetBrains Mono", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #E7E2D6;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+      padding: 32px 28px 72px;
+    }
+
+    .sheet {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Sheet Header ---------- */
+    .sheet-head {
+      background: var(--cream);
+      border: 1px solid var(--hair-strong);
+      border-radius: 14px;
+      padding: 28px 34px;
+      box-shadow: var(--shadow);
+      margin-bottom: 34px;
+    }
+    .sheet-eyebrow {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .sheet-title {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      margin-bottom: 10px;
+    }
+    .sheet-dek {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 980px;
+      margin-bottom: 18px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .meta-pill {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: var(--tile);
+      border: 1px solid var(--hair);
+      color: var(--ink);
+    }
+    .meta-pill.accent {
+      background: var(--coral-soft);
+      border-color: rgba(204, 120, 92, 0.45);
+      color: #8F4730;
+      font-weight: 700;
+    }
+
+    /* ---------- Act Sections & Full-Width YouTube 16:9 Stack ---------- */
+    .act-section {
+      margin-bottom: 42px;
+    }
+    .act-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--hair-strong);
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .act-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 500;
+    }
+    .act-tag {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 700;
+    }
+    .grid-yt {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .cell-wrap {
+      background: var(--cream);
+      border: 1px solid var(--hair-strong);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ---------- True 16:9 YouTube Widescreen Banner ---------- */
+    .stage {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      container-type: inline-size;
+      background: var(--cream);
+      border: 1px solid var(--hair-strong);
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .safe-top {
+      height: 83%;
+      width: 100%;
+      padding: 2.8cqw 3.8cqw 1.2cqw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .keepout-band {
+      height: 17%;
+      width: 100%;
+      border-top: 1px dashed rgba(20, 20, 19, 0.22);
+      background: rgba(239, 233, 222, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3.8cqw;
+    }
+    .yt-cap-sample {
+      background: var(--cream);
+      border: 1px solid var(--hair-strong);
+      border-radius: 0.9cqw;
+      padding: 0.7cqw 2.4cqw;
+      font-family: var(--serif);
+      font-size: 2.3cqw;
+      font-weight: 500;
+      color: var(--ink);
+      box-shadow: 0 2px 10px rgba(20, 20, 19, 0.08);
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2cqw;
+    }
+    .yt-cap-word-active {
+      border-bottom: 0.28cqw solid var(--coral);
+    }
+    .yt-cap-meta {
+      font-family: var(--mono);
+      font-size: 1.55cqw;
+      color: var(--faint);
+      letter-spacing: 0.04em;
+    }
+
+    /* ---------- Meta Footer Below Each Banner ---------- */
+    .cell-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      border-bottom: 1px solid var(--hair);
+      padding-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .cell-name {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--ink);
+    }
+    .cell-time {
+      font-family: var(--mono);
+      font-size: 13.5px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .cell-note {
+      font-size: 14.5px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .cell-note b {
+      color: var(--ink);
+    }
+    .cell-chips {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2px;
+    }
+    .seam-chip {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: var(--tile);
+      border: 1px solid var(--hair);
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .role-chip {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--faint);
+    }
+
+    /* ---------- YouTube-Grade Large cqw Component Primitives (Min >= 1.8cqw) ---------- */
+    .kicker {
+      font-family: var(--mono);
+      font-size: 2.05cqw;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+    .kicker .spk { color: var(--coral); font-weight: 700; }
+    .kicker .pill {
+      font-size: 1.85cqw;
+      padding: 0.35cqw 1.3cqw;
+      border-radius: 9999px;
+      border: 1px solid var(--hair-strong);
+      background: var(--tile);
+      color: var(--ink);
+    }
+    .kicker .pill.hard { background: var(--red-soft); border-color: var(--red); color: var(--red); }
+
+    .h-serif {
+      font-family: var(--serif);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--ink);
+    }
+    .tile-box {
+      background: var(--tile);
+      border: 1px solid var(--hair);
+      border-radius: 1.1cqw;
+      padding: 1.4cqw 1.8cqw;
+    }
+    .card-box {
+      background: var(--cream);
+      border: 1px solid var(--hair-strong);
+      border-radius: 1.1cqw;
+      padding: 1.3cqw 1.7cqw;
+    }
+    .split-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8cqw;
+      flex: 1;
+      align-items: stretch;
+      margin-top: 1.1cqw;
+    }
+    .triptych {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5cqw;
+      flex: 1;
+      margin-top: 1.2cqw;
+    }
+    .arr-row {
+      display: flex;
+      gap: 0.85cqw;
+      align-items: center;
+      position: relative;
+      padding: 1.4cqw 1.2cqw;
+      background: var(--tile);
+      border: 1px solid var(--hair);
+      border-radius: 1.1cqw;
+    }
+    .acell {
+      flex: 1;
+      text-align: center;
+      background: var(--cream);
+      border: 0.22cqw solid var(--hair-strong);
+      border-radius: 0.85cqw;
+      padding: 0.8cqw 0.4cqw;
+      font-family: var(--mono);
+    }
+    .acell .v { font-size: 3.3cqw; font-weight: 700; display: block; line-height: 1.08; }
+    .acell .idx { font-size: 1.8cqw; color: var(--muted); display: block; margin-top: 0.3cqw; font-weight: 600; }
+    .acell.win { background: var(--coral-soft); border-color: var(--coral); }
+    .acell.max { background: var(--green-soft); border-color: var(--green); }
+    .acell.max .v { color: var(--green); }
+    .acell.cur { background: var(--blue-soft); border-color: var(--blue); }
+    .acell.cur .v { color: var(--blue); }
+    .acell.dim { opacity: 0.44; }
+
+    .dq-tube {
+      background: var(--cream);
+      border: 0.22cqw solid var(--hair-strong);
+      border-left: 0.5cqw dashed var(--red);
+      border-right: 0.5cqw dashed var(--blue);
+      border-radius: 1cqw;
+      padding: 1.1cqw 1.6cqw;
+      display: flex;
+      align-items: center;
+      gap: 1.1cqw;
+    }
+    .dq-chip {
+      padding: 0.7cqw 1.35cqw;
+      border-radius: 0.85cqw;
+      border: 0.22cqw solid var(--purple);
+      background: var(--purple-soft);
+      font-family: var(--mono);
+      font-size: 2.5cqw;
+      font-weight: 700;
+      color: var(--purple);
+      text-align: center;
+      line-height: 1.15;
+    }
+    .dq-chip.head { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+    .dq-chip.kill { border-color: var(--red); background: var(--red-soft); color: var(--red); text-decoration: line-through; opacity: 0.78; }
+    .dq-chip small { display: block; font-size: 1.75cqw; color: var(--muted); font-weight: 600; }
+
+    .bar-stage {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 2.8cqw;
+      height: 20.5cqw;
+      padding-top: 1.2cqw;
+    }
+    .bar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bar {
+      width: 9cqw;
+      border-radius: 1cqw 1cqw 0.35cqw 0.35cqw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 0.8cqw;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 2.8cqw;
+      border: 0.24cqw solid;
+    }
+    .bar.kicked { background: var(--red-soft); border-color: var(--red); color: var(--red); opacity: 0.45; }
+    .bar.king { background: var(--green-soft); border-color: var(--green); color: var(--green); }
+    .bar.newbie { background: var(--blue-soft); border-color: var(--blue); color: var(--blue); }
+    .bar-lbl { font-size: 1.85cqw; font-family: var(--mono); color: var(--muted); text-align: center; margin-top: 0.55cqw; font-weight: 600; }
+
+    .code-win {
+      background: var(--navy);
+      border: 1px solid rgba(250, 249, 245, 0.16);
+      border-radius: 1cqw;
+      overflow: hidden;
+      font-family: var(--mono);
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+    }
+    .code-bar {
+      background: var(--navy-elev);
+      padding: 0.6cqw 1.3cqw;
+      font-size: 1.7cqw;
+      color: rgba(250, 249, 245, 0.78);
+      border-bottom: 1px solid rgba(250, 249, 245, 0.12);
+      display: flex;
+      justify-content: space-between;
+    }
+    .code-body {
+      padding: 0.9cqw 1.3cqw;
+      font-size: 1.75cqw;
+      line-height: 1.38;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .kw { color: var(--coral); }
+    .ty { color: var(--amber); }
+    .cm { color: #8B867C; }
+    .st { color: var(--teal); }
+    .hl-line { background: rgba(204, 120, 92, 0.22); display: inline-block; width: calc(100% + 2.6cqw); margin: 0 -1.3cqw; padding: 0 1.3cqw; border-left: 0.4cqw solid var(--coral); }
+
+    /* ---------- Closing Reference Cards ---------- */
+    .closing-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 20px;
+      margin-top: 14px;
+    }
+    @media (max-width: 960px) { .closing-grid { grid-template-columns: 1fr; } }
+    .ref-card {
+      background: var(--cream);
+      border: 1px solid var(--hair-strong);
+      border-radius: 14px;
+      padding: 22px 26px;
+      box-shadow: var(--shadow);
+    }
+    .ref-card h3 {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .seam-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    .seam-node {
+      background: var(--tile);
+      border: 1px solid var(--hair-strong);
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-weight: 600;
+    }
+    .seam-arrow {
+      color: var(--coral);
+      font-weight: 700;
+    }
+    .swatch-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--tile);
+      padding: 4px 9px;
+      border-radius: 6px;
+      border: 1px solid var(--hair);
+    }
+    .swatch i {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      display: inline-block;
+    }
+    .ban-list {
+      font-size: 13.5px;
+      color: var(--muted);
+      padding-left: 18px;
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="sheet-head">
+    <div class="sheet-eyebrow">✱ HYPERFRAMES · YOUTUBE 16:9 STORYBOARD SKETCH SHEET v2</div>
+    <h1 class="sheet-title">LeetCode 239 · Sliding Window Maximum — YouTube 橫幅高可讀性版</h1>
+    <p class="sheet-dek">
+      比你晚進來還比你大，前面直接淘汰——用存索引的單調遞減雙端佇列，三個口訣把滑動視窗最大值從 O(nk) 降到 O(n)。
+    </p>
+    <div class="meta-pills">
+      <span class="meta-pill">1920×1080 標準 16:9 YouTube 橫幅</span>
+      <span class="meta-pill accent" id="total-duration-badge">實測總長 452.73s（約 7 分 33 秒）· 語音已對齊</span>
+      <span class="meta-pill">15 Frames · 5 Acts</span>
+      <span class="meta-pill">字級 ≥ 1.8cqw（大字好讀）</span>
+      <span class="meta-pill">Voice: zh-TW-YunJheNeural</span>
+      <span class="meta-pill">Render: Google Colab CPU VM</span>
+    </div>
+  </header>
+
+  <!-- ==================== ACT 1 ==================== -->
+  <section class="act-section">
+    <div class="act-bar">
+      <h2 class="act-title">Act 1 · 題意拆解與暴力法為何必爆</h2>
+      <span class="act-tag">FRAMES 01 – 03 · HOOK &amp; PROBLEM</span>
+    </div>
+    <div class="grid-yt">
+
+      <!-- Frame 01 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-01">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> LEETCODE 239 · BEGINNER EDITION</span><span class="pill hard">HARD</span></div>
+            <div class="h-serif" style="font-size:5.6cqw; line-height:1.12;">
+              比你晚畢業、實力又比你強<br>
+              <span style="color:var(--coral); font-weight:700;">前面學長直接淘汰！</span>
+            </div>
+            <div class="tile-box" style="display:flex; justify-content:space-between; align-items:center; gap:2cqw;">
+              <div>
+                <div style="font-family:var(--mono); font-size:1.85cqw; color:var(--muted); font-weight:600;">校隊選拔生活直覺</div>
+                <div style="font-size:2.6cqw; font-weight:700; margin-top:0.35cqw;">這輩子再也沒機會當隊長 ➔ 直接出局</div>
+              </div>
+              <div style="font-family:var(--mono); font-size:3.1cqw; font-weight:700; background:var(--cream); border:1.5px solid var(--hair-strong); padding:1cqw 2cqw; border-radius:1cqw;">O(n)</div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">字幕範例</span> <span>比你晚畢業、</span><span class="yt-cap-word-active">實力又比你強</span><span>，前面直接淘汰！</span></span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">01 · 破題：校隊選拔直覺</span>
+          <span class="cell-time">01-hook.html · <span class="time-tag" data-frame="1">0.0–22.8s (22.83s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>「Hard」標籤與 5.6cqw 主標題依序揭示；說到校隊選拔時下方 2.6cqw 比喻卡與 O(n) 徽章滑入定格。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: cut</span><span class="role-chip">hook · kinetic-type-beats</span></div>
+      </article>
+
+      <!-- Frame 02 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-02">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> 00 PROBLEM SPEC · 兩個新手必踩細節</span><span class="pill">k = 3</span></div>
+            <div class="arr-row">
+              <div class="acell win"><span class="v">1</span><span class="idx">0 未滿</span></div>
+              <div class="acell win"><span class="v">3</span><span class="idx">1 未滿</span></div>
+              <div class="acell win max"><span class="v">-1</span><span class="idx">2 (k-1)</span></div>
+              <div class="acell"><span class="v">-3</span><span class="idx">3</span></div>
+              <div class="acell"><span class="v">5</span><span class="idx">4</span></div>
+              <div class="acell"><span class="v">3</span><span class="idx">5</span></div>
+              <div class="acell"><span class="v">6</span><span class="idx">6</span></div>
+              <div class="acell"><span class="v">7</span><span class="idx">7</span></div>
+            </div>
+            <div class="split-2" style="flex:0;">
+              <div class="card-box">
+                <div style="font-family:var(--mono); font-size:1.85cqw; color:var(--coral); font-weight:700;">① 何時開始記答案？</div>
+                <div style="font-size:2.5cqw; font-weight:700; margin-top:0.35cqw;">i ≥ k - 1（湊滿 k 格才記）</div>
+              </div>
+              <div class="card-box">
+                <div style="font-family:var(--mono); font-size:1.85cqw; color:var(--green); font-weight:700;">② 總共有幾個答案？</div>
+                <div style="font-size:2.5cqw; font-weight:700; margin-top:0.35cqw;">n - k + 1 = 8 - 3 + 1 = 6</div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 總共會產出 n 減 k 加 1 個最大值</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">02 · 題意拆解：滑動與答案數</span>
+          <span class="cell-time">02-problem-spec.html · <span class="time-tag" data-frame="2">22.8–48.8s (25.93s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>8 格大字陣列與橘色視窗框進場；隨口播點亮「i ≥ k - 1 才開始記」與「n - k + 1 = 6」雙卡。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: crossfade</span><span class="role-chip">pain_point · device-surface</span></div>
+      </article>
+
+      <!-- Frame 03 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-03">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> WHY NOT BRUTE FORCE</span><span class="pill hard">TLE 超時警告</span></div>
+            <div class="split-2">
+              <div class="tile-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:2.1cqw; color:var(--muted); font-weight:700;">暴力法：每格重掃 k 個數</div>
+                <div class="h-serif" style="font-size:5.8cqw;">O(n · k)</div>
+                <div style="font-family:var(--mono); font-size:2.1cqw; color:var(--ink); font-weight:600;">n ≤ 10⁵ · k = 5×10⁴</div>
+              </div>
+              <div class="card-box" style="border-color:var(--red); background:var(--red-soft); display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:2.05cqw; color:var(--red); font-weight:700;">總運算次數計數</div>
+                <div class="h-serif" style="font-size:4.9cqw; color:var(--red); font-weight:700;">5,000,000,000</div>
+                <div style="display:inline-block; align-self:flex-start; background:var(--red); color:#fff; font-family:var(--mono); font-size:2.1cqw; font-weight:700; padding:0.45cqw 1.3cqw; border-radius:0.7cqw;">✗ TLE 超時必炸</div>
+              </div>
+            </div>
+            <div style="text-align:center; font-size:2.4cqw; font-weight:700; margin-top:0.8cqw; color:var(--ink);">
+              目標：框滑一格不重掃 ➔ <span style="color:var(--coral);">秒知最大值！</span>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 五十億次運算，絕對直接超時！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">03 · 為什麼暴力法必 TLE 超時</span>
+          <span class="cell-time">03-brute-tle.html · <span class="time-tag" data-frame="3">48.8–76.5s (27.78s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>左側 O(nk) 框逐格重掃；右側運算計數衝上 5×10⁹ 蓋上「TLE 超時」大章，切入主角介紹。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: crossfade</span><span class="role-chip">pain_point · dataviz-countup</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================== ACT 2 ==================== -->
+  <section class="act-section">
+    <div class="act-bar">
+      <h2 class="act-title">Act 2 · 白話翻譯機：Deque、存索引、踢 vs 留與三口訣</h2>
+      <span class="act-tag">FRAMES 04 – 08 · CORE INTUITION</span>
+    </div>
+    <div class="grid-yt">
+
+      <!-- Frame 04 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-04">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> THE TOOL · 前後雙門候補走廊</span><span class="pill">std::deque</span></div>
+            <div class="dq-tube" style="justify-content:space-between;">
+              <span style="font-family:var(--mono); font-size:2cqw; color:var(--green); font-weight:700;">◀ 前門 front (最大👑)</span>
+              <div style="display:flex; gap:1cqw;">
+                <span class="dq-chip head">idx 1 : 3</span>
+                <span class="dq-chip">idx 2 : -1</span>
+              </div>
+              <span style="font-family:var(--mono); font-size:2cqw; color:var(--blue); font-weight:700;">後門 back (最新) ▶</span>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.1cqw;">
+              <div class="card-box" style="padding:1.1cqw 1.5cqw;"><code style="font-family:var(--mono); color:var(--coral); font-weight:700; font-size:2.2cqw;">i</code> <span style="font-size:2.1cqw; font-weight:600;">剛進框的新人位置</span></div>
+              <div class="card-box" style="padding:1.1cqw 1.5cqw;"><code style="font-family:var(--mono); color:var(--coral); font-weight:700; font-size:2.2cqw;">i - k + 1</code> <span style="font-size:2.1cqw; font-weight:600;">左界底線 (4-3+1=<b>2</b>)</span></div>
+              <div class="card-box" style="padding:1.1cqw 1.5cqw;"><code style="font-family:var(--mono); color:var(--purple); font-weight:700; font-size:2.2cqw;">dq</code> <span style="font-size:2.1cqw; font-weight:600;">左大 ➔ 右小候補名單</span></div>
+              <div class="card-box" style="padding:1.1cqw 1.5cqw;"><code style="font-family:var(--mono); color:var(--green); font-weight:700; font-size:2.2cqw;">nums[dq.front()]</code> <span style="font-size:2.1cqw; font-weight:600;">當前最大值 👑</span></div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 例如走到第 4 格，左界就是 4 減 3 加 1 等於 2</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">04 · 認識 Deque 走廊與 4 個符號</span>
+          <span class="cell-time">04-deque-notations.html · <span class="time-tag" data-frame="4">76.5–107.9s (31.35s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>前後雙門走廊進場；4 張大字符號卡依口播順序展開，特別亮出 `4 - 3 + 1 = 2` 實算左界。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: cut</span><span class="role-chip">product_intro · grid-card</span></div>
+      </article>
+
+      <!-- Frame 05 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-05">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> LAB 1 · 符號剝洋蔥</span><span class="pill">存 index！</span></div>
+            <div class="split-2">
+              <div class="tile-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:2.2cqw; font-weight:700;">① 門牌位置 vs 實際數值</div>
+                <div style="background:var(--cream); border:1.5px solid var(--hair-strong); border-radius:0.9cqw; padding:1.2cqw 1.4cqw; font-family:var(--mono); font-size:2.25cqw; line-height:1.65;">
+                  dq.back() ➔ <b style="color:var(--purple);">idx 2 (門牌)</b><br>
+                  nums[dq.back()] ➔ <b style="color:var(--blue);">-1 (數值)</b>
+                </div>
+                <div style="font-size:2.05cqw; color:var(--muted); font-weight:600;">外層套上 nums[...] 才去查數值</div>
+              </div>
+              <div class="card-box" style="border-color:var(--coral); display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:2.2cqw; color:var(--coral); font-weight:700;">② 反例 [5, 1, 5], k = 2</div>
+                <div style="display:flex; gap:0.9cqw; justify-content:center;">
+                  <span class="acell dim" style="padding:0.7cqw;"><span class="v" style="font-size:2.8cqw;">5</span><span class="idx">idx 0 出框</span></span>
+                  <span class="acell win" style="padding:0.7cqw;"><span class="v" style="font-size:2.8cqw;">1</span><span class="idx">idx 1</span></span>
+                  <span class="acell max" style="padding:0.7cqw;"><span class="v" style="font-size:2.8cqw;">5</span><span class="idx">idx 2 框內</span></span>
+                </div>
+                <div style="font-size:2.1cqw; font-weight:700;">只存「5」分不清哪個已掉出框外！</div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 存索引，就能同時知道位置跟數值</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">05 · 剝洋蔥：為何存索引不存值</span>
+          <span class="cell-time">05-why-index.html · <span class="time-tag" data-frame="5">107.9–143.4s (35.50s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>左欄箭頭拆解 `nums[dq.back()]`；右欄 `[5,1,5]` 從「撞名問號」切換成「idx 0 出框 vs idx 2 框內」，左推至劇本 A。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: push-slide LEFT</span><span class="role-chip">feature · comparison-split</span></div>
+      </article>
+
+      <!-- Frame 06 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-06">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> LAB 2A · 什麼時候「必踢」？</span><span class="pill">新人 ≥ 隊尾</span></div>
+            <div class="bar-stage">
+              <div class="bar-wrap">
+                <div class="bar kicked" style="height:11.5cqw;">3</div>
+                <div class="bar-lbl">學長 · 踢掉!</div>
+              </div>
+              <div class="bar-wrap">
+                <div class="bar kicked" style="height:6.5cqw;">-1</div>
+                <div class="bar-lbl">隊尾 · 踢掉!</div>
+              </div>
+              <div style="font-family:var(--mono); font-size:2.8cqw; color:var(--coral); font-weight:700; align-self:center;">◀ 從後門踢光</div>
+              <div class="bar-wrap">
+                <div class="bar king" style="height:16cqw;">5 👑</div>
+                <div class="bar-lbl" style="color:var(--green); font-weight:700;">新老大 (更大 + 更晚出框)</div>
+              </div>
+            </div>
+            <div class="tile-box" style="display:flex; justify-content:space-between; align-items:center; padding:1.1cqw 1.8cqw;">
+              <span style="font-size:2.15cqw; font-weight:700;">只要 5 還在框裡一天，前面較小的永遠沒機會</span>
+              <code style="font-family:var(--mono); font-size:1.95cqw; background:var(--cream); padding:0.4cqw 1cqw; border-radius:0.6cqw; border:1px solid var(--hair-strong); font-weight:700;">相等 &lt;= 也踢舊留新</code>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 5 不只數值比他們大，而且比較晚進框！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">06 · 劇本 A（必踢）：新人較大</span>
+          <span class="cell-time">06-kick-rule.html · <span class="time-tag" data-frame="6">143.4–176.0s (32.60s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>高度柱 3、-1 與新人 5 並列；標註「更大＋更晚出框」後，-1 與 3 依序劃線變淡，底部補充 `<=` 等值處理。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: push-slide LEFT</span><span class="role-chip">feature · comparison-split</span></div>
+      </article>
+
+      <!-- Frame 07 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-07">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> LAB 2B · 什麼時候「要留」？</span><span class="pill">新人 &lt; 隊尾</span></div>
+            <div class="split-2">
+              <div class="tile-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:2.1cqw; font-weight:700;">階段①：千萬不能踢 -1！</div>
+                <div style="display:flex; align-items:flex-end; justify-content:center; gap:2.4cqw; height:14cqw;">
+                  <div class="bar king" style="height:12.5cqw; width:8cqw;">3 👑</div>
+                  <div class="bar newbie" style="height:7cqw; width:8cqw;">-1</div>
+                </div>
+                <div style="font-size:2.05cqw; text-align:center;">雖然現在比較小，但<b>活得比較久</b></div>
+              </div>
+              <div class="card-box" style="border-color:var(--green); display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:2.1cqw; color:var(--green); font-weight:700;">階段②：視窗右滑 ➔ 接班！</div>
+                <div style="display:flex; align-items:flex-end; justify-content:center; gap:2.4cqw; height:14cqw;">
+                  <div class="bar kicked" style="height:12.5cqw; width:8cqw; border-style:dashed; font-size:2.1cqw;">3 出框</div>
+                  <div class="bar king" style="height:7cqw; width:8cqw;">-1 👑</div>
+                </div>
+                <div style="font-size:2.05cqw; text-align:center; font-weight:700; color:var(--green);">3 退休，-1 立刻變新老大！</div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 名單自動維持左大右小的單調遞減順序</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">07 · 劇本 B（要留）：接班候補</span>
+          <span class="cell-time">07-keep-rule.html · <span class="time-tag" data-frame="7">176.0–208.8s (32.82s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>左格 3 與 -1 留作接班候補；右格呈現視窗右滑後 3 退場、-1 戴皇冠接班，帶出左大右小單調遞減。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: push-slide LEFT</span><span class="role-chip">feature · comparison-split</span></div>
+      </article>
+
+      <!-- Frame 08 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-08">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> THE 3-STEP MANTRA · 每一輪只做這三件事</span><span class="pill">核心口訣</span></div>
+            <div class="triptych">
+              <div class="card-box" style="border-top:0.65cqw solid var(--red); display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div style="font-family:var(--mono); font-size:1.95cqw; color:var(--red); font-weight:700;">STEP 1</div>
+                  <div style="font-size:2.85cqw; font-weight:700; margin-top:0.6cqw;">頭出框就踢</div>
+                  <div style="font-size:1.95cqw; color:var(--muted); margin-top:0.8cqw; line-height:1.45;">隊頭位置小於左界 i - k + 1，從前門移除</div>
+                </div>
+                <code style="font-family:var(--mono); font-size:1.9cqw; background:var(--red-soft); color:var(--red); padding:0.55cqw 0.9cqw; border-radius:0.6cqw; font-weight:700;">dq.pop_front()</code>
+              </div>
+              <div class="card-box" style="border-top:0.65cqw solid var(--coral); display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div style="font-family:var(--mono); font-size:1.95cqw; color:var(--coral); font-weight:700;">STEP 2</div>
+                  <div style="font-size:2.85cqw; font-weight:700; margin-top:0.6cqw;">尾比我小就踢</div>
+                  <div style="font-size:1.95cqw; color:var(--muted); margin-top:0.8cqw; line-height:1.45;">隊尾 ≤ 新值全踢光，再把 i 放進隊尾</div>
+                </div>
+                <code style="font-family:var(--mono); font-size:1.85cqw; background:var(--coral-soft); color:#8F4730; padding:0.55cqw 0.9cqw; border-radius:0.6cqw; font-weight:700;">pop_back + push(i)</code>
+              </div>
+              <div class="card-box" style="border-top:0.65cqw solid var(--green); display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                  <div style="font-family:var(--mono); font-size:1.95cqw; color:var(--green); font-weight:700;">STEP 3</div>
+                  <div style="font-size:2.85cqw; font-weight:700; margin-top:0.6cqw;">隊頭就是答案</div>
+                  <div style="font-size:1.95cqw; color:var(--muted); margin-top:0.8cqw; line-height:1.45;">當 i ≥ k - 1 滿框起，直接記下隊頭值</div>
+                </div>
+                <code style="font-family:var(--mono); font-size:1.85cqw; background:var(--green-soft); color:var(--green); padding:0.55cqw 0.9cqw; border-radius:0.6cqw; font-weight:700;">nums[dq.front()]</code>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 頭出框就踢、尾比我小就踢、隊頭就是答案</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">08 · 三步口訣總整理</span>
+          <span class="cell-time">08-three-steps.html · <span class="time-tag" data-frame="8">208.8–235.5s (26.70s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>三聯大字口訣卡依序由左至右展開並點亮各自代碼晶片，隨即切入範例實戰固定舞台。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: crossfade</span><span class="role-chip">product_intro · grid-card</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================== ACT 3 ==================== -->
+  <section class="act-section">
+    <div class="act-bar">
+      <h2 class="act-title">Act 3 · 官方範例同舞台慢動作實戰（nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3）</h2>
+      <span class="act-tag">FRAMES 09 – 11 · CONSISTENT STAGE WALKTHROUGH</span>
+    </div>
+    <div class="grid-yt">
+
+      <!-- Frame 09 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-09">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> WALKTHROUGH 1/3 · i = 0 → 2</span><span class="pill">左界 = 0</span></div>
+            <div class="arr-row">
+              <div class="acell win"><span class="v">1</span><span class="idx">0</span></div>
+              <div class="acell win max"><span class="v">3</span><span class="idx">1 👑</span></div>
+              <div class="acell win cur"><span class="v">-1</span><span class="idx">2 (i)</span></div>
+              <div class="acell dim"><span class="v">-3</span><span class="idx">3</span></div>
+              <div class="acell dim"><span class="v">5</span><span class="idx">4</span></div>
+              <div class="acell dim"><span class="v">3</span><span class="idx">5</span></div>
+              <div class="acell dim"><span class="v">6</span><span class="idx">6</span></div>
+              <div class="acell dim"><span class="v">7</span><span class="idx">7</span></div>
+            </div>
+            <div class="split-2">
+              <div class="dq-tube" style="flex-direction:column; align-items:stretch; justify-content:space-between;">
+                <div style="font-size:1.9cqw; color:var(--muted); font-weight:700;">dq 候補名單（i=1 時 3 踢掉 0:1）</div>
+                <div style="display:flex; gap:1cqw; align-items:center;">
+                  <span class="dq-chip head">1:3 👑</span>
+                  <span class="dq-chip">2:-1</span>
+                  <span class="dq-chip kill">0:1</span>
+                </div>
+              </div>
+              <div class="card-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:1.9cqw; color:var(--green); font-weight:700;">i=2 湊滿 3 格 ➔ 記第一個答案！</div>
+                <div style="font-family:var(--mono); font-size:2.6cqw; font-weight:700;">res = [ <span style="color:var(--green); background:var(--green-soft); padding:0.25cqw 1cqw; border-radius:0.6cqw;">3</span> ]</div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 終於湊滿三個數字，直接記下隊頭 3！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">09 · 慢動作實戰 (1/3)：i = 0, 1, 2</span>
+          <span class="cell-time">09-walkthrough-1.html · <span class="time-tag" data-frame="9">235.5–269.7s (34.21s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>一致舞台展開，依序推進 i=0(入0:1) → i=1(踢0:1) → i=2(留2:-1 記下第一個 3)，左推接續高潮。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: cut</span><span class="role-chip">social_proof · device-surface</span></div>
+      </article>
+
+      <!-- Frame 10 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-10">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> WALKTHROUGH 2/3 · i = 3 → 4 (全場高潮)</span><span class="pill hard">左界 = 2</span></div>
+            <div class="arr-row">
+              <div class="acell dim"><span class="v">1</span><span class="idx">0</span></div>
+              <div class="acell dim" style="border-color:var(--red); color:var(--red);"><span class="v">3</span><span class="idx">1 出框</span></div>
+              <div class="acell win"><span class="v">-1</span><span class="idx">2</span></div>
+              <div class="acell win"><span class="v">-3</span><span class="idx">3</span></div>
+              <div class="acell win max cur"><span class="v">5</span><span class="idx">4 (i)👑</span></div>
+              <div class="acell dim"><span class="v">3</span><span class="idx">5</span></div>
+              <div class="acell dim"><span class="v">6</span><span class="idx">6</span></div>
+              <div class="acell dim"><span class="v">7</span><span class="idx">7</span></div>
+            </div>
+            <div class="split-2">
+              <div class="dq-tube" style="flex-direction:column; align-items:stretch; justify-content:space-between;">
+                <div style="font-size:1.85cqw; color:var(--coral); font-weight:700;">① 前門出框 1:3 · ② 後門清光 -3, -1</div>
+                <div style="display:flex; gap:0.65cqw; align-items:center; flex-wrap:nowrap;">
+                  <span class="dq-chip kill" style="font-size:2.1cqw; padding:0.5cqw 0.95cqw;">1:3</span>
+                  <span style="font-family:var(--mono); font-size:1.9cqw; font-weight:700;">←</span>
+                  <span class="dq-chip head" style="font-size:2.1cqw; padding:0.5cqw 0.95cqw;">4:5 👑</span>
+                  <span style="font-family:var(--mono); font-size:1.9cqw; font-weight:700;">→</span>
+                  <span class="dq-chip kill" style="font-size:2.1cqw; padding:0.5cqw 0.95cqw;">2:-1</span>
+                  <span class="dq-chip kill" style="font-size:2.1cqw; padding:0.5cqw 0.95cqw;">3:-3</span>
+                </div>
+              </div>
+              <div class="card-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:1.9cqw; color:var(--green); font-weight:700;">i=3 記 3 ➔ i=4 記 5</div>
+                <div style="font-family:var(--mono); font-size:2.45cqw; font-weight:700;">res = [ 3, 3, <span style="color:var(--green); background:var(--green-soft); padding:0.25cqw 0.9cqw; border-radius:0.6cqw;">5</span> ]</div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 老隊長 3 從前門退休，5 從後門清空接管老大！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">10 · 慢動作實戰 (2/3)：i = 3, 4 高潮</span>
+          <span class="cell-time">10-walkthrough-2.html · <span class="time-tag" data-frame="10">269.7–303.5s (33.75s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>沿用同舞台先走 i=3；到 i=4 時左門紅光踢飛過期 1:3，右門連踢 -3 與 -1，4:5 接管老大。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: push-slide LEFT</span><span class="role-chip">social_proof · device-surface</span></div>
+      </article>
+
+      <!-- Frame 11 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-11">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> WALKTHROUGH 3/3 · i = 5 → 7 收官</span><span class="pill">只掃一遍!</span></div>
+            <div class="arr-row">
+              <div class="acell dim"><span class="v">1</span><span class="idx">0</span></div>
+              <div class="acell dim"><span class="v">3</span><span class="idx">1</span></div>
+              <div class="acell dim"><span class="v">-1</span><span class="idx">2</span></div>
+              <div class="acell dim"><span class="v">-3</span><span class="idx">3</span></div>
+              <div class="acell dim"><span class="v">5</span><span class="idx">4</span></div>
+              <div class="acell win"><span class="v">3</span><span class="idx">5</span></div>
+              <div class="acell win"><span class="v">6</span><span class="idx">6</span></div>
+              <div class="acell win max cur"><span class="v">7</span><span class="idx">7 👑</span></div>
+            </div>
+            <div class="split-2">
+              <div class="dq-tube" style="flex-direction:column; align-items:stretch; justify-content:space-between;">
+                <div style="font-size:1.9cqw; color:var(--muted); font-weight:700;">i=6 踢 3, 5 ➔ i=7 踢 6:6</div>
+                <div style="display:flex; gap:1cqw; align-items:center;">
+                  <span class="dq-chip head">7:7 👑</span>
+                  <span class="dq-chip kill">6:6</span>
+                </div>
+              </div>
+              <div class="card-box" style="border-color:var(--green); display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:1.9cqw; color:var(--green); font-weight:700;">✓ 完整 6 個答案收集完畢</div>
+                <div style="font-family:var(--mono); font-size:2.2cqw; font-weight:700; color:var(--green);">res = [3, 3, 5, 5, 6, 7]</div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 陣列只掃過一次，精準拿到完整答案！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">11 · 慢動作實戰 (3/3)：i = 5, 6, 7</span>
+          <span class="cell-time">11-walkthrough-3.html · <span class="time-tag" data-frame="11">303.5–333.9s (30.46s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>沿用同舞台滑過 i=5、6、7，右側答案列一顆顆填滿 `[3, 3, 5, 5, 6, 7]`，切入代碼對照。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: push-slide LEFT</span><span class="role-chip">social_proof · device-surface</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================== ACT 4 ==================== -->
+  <section class="act-section">
+    <div class="act-bar">
+      <h2 class="act-title">Act 4 · C++ 核心代碼、均攤 O(n) 證明與面試保命錦囊</h2>
+      <span class="act-tag">FRAMES 12 – 14 · CODE &amp; INTERVIEW DEPTH</span>
+    </div>
+    <div class="grid-yt">
+
+      <!-- Frame 12 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-12">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> C++ CORE · 10 行最佳解</span><span class="pill">O(n) / O(k)</span></div>
+            <div style="display:grid; grid-template-columns:1.92fr 1fr; gap:1.4cqw; flex:1; margin-top:0.6cqw; min-height:0;">
+              <div class="code-win">
+                <div class="code-bar"><span>solution.cpp</span><span>std::deque&lt;int&gt;</span></div>
+                <div class="code-body"><span class="ty">deque</span>&lt;<span class="kw">int</span>&gt; dq; <span class="ty">vector</span>&lt;<span class="kw">int</span>&gt; res;
+res.reserve(nums.size() - k + <span class="st">1</span>);
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="st">0</span>; i &lt; (<span class="kw">int</span>)nums.size(); ++i) {
+<span class="hl-line">  <span class="kw">if</span> (!dq.empty() &amp;&amp; dq.front() &lt; i - k + <span class="st">1</span>)
+    dq.pop_front();               <span class="cm">// 1. 頭踢過期</span></span>
+  <span class="kw">while</span> (!dq.empty() &amp;&amp; nums[dq.back()] &lt;= nums[i])
+    dq.pop_back();                <span class="cm">// 2. 尾踢廢物</span>
+  dq.push_back(i);                <span class="cm">// 3. 新人入尾</span>
+  <span class="kw">if</span> (i &gt;= k - <span class="st">1</span>)                 <span class="cm">// 4. 滿框記隊頭</span>
+    res.push_back(nums[dq.front()]);
+}</div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0.9cqw; justify-content:space-between;">
+                <div class="card-box" style="padding:1cqw 1.3cqw; border-color:var(--coral);"><b style="font-size:1.95cqw; color:var(--coral);">① 為什麼用 if？</b><div style="font-size:1.8cqw; color:var(--muted); margin-top:0.2cqw;">每次只滑 1 格，最多過期 1 個</div></div>
+                <div class="card-box" style="padding:1cqw 1.3cqw;"><b style="font-size:1.95cqw;">② while &lt;= 尾踢</b><div style="font-size:1.8cqw; color:var(--muted); margin-top:0.2cqw;">比新來的弱全部踢掉</div></div>
+                <div class="card-box" style="padding:1cqw 1.3cqw;"><b style="font-size:1.95cqw;">③ Python 對照</b><div style="font-family:var(--mono); font-size:1.8cqw; color:var(--ink); margin-top:0.2cqw;">popleft / pop / append</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 每次只滑一格最多過期一個，寫 if 就夠了！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">12 · C++ 10 行核心代碼（附 Python）</span>
+          <span class="cell-time">12-cpp-code.html · <span class="time-tag" data-frame="12">333.9–368.5s (34.54s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>暖深藍代碼框展開，隨旁白逐行高亮 `if` 過期（說明不用 `while`）、`while <=`、`push_back` 與 `i>=k-1`，右欄帶出 Python API。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: cut</span><span class="role-chip">feature · panel-edit-live-sync</span></div>
+      </article>
+
+      <!-- Frame 13 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-13">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> LAB 3 · 均攤 O(n) 門票證明</span><span class="pill">面試必追問</span></div>
+            <div style="font-size:2.65cqw; font-weight:700;">for 迴圈包著 while，為什麼不是 O(nk)？</div>
+            <div class="split-2">
+              <div class="tile-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-size:1.9cqw; color:var(--muted); font-weight:700;">每人一輩子：🟢進場券(1) ＋ 🔴離場券(1)</div>
+                <div style="display:flex; gap:0.8cqw; justify-content:center;">
+                  <span class="acell dim" style="padding:0.75cqw;"><span class="v" style="font-size:2.6cqw;">8</span><span class="idx">🟢 🔴</span></span>
+                  <span class="acell dim" style="padding:0.75cqw;"><span class="v" style="font-size:2.6cqw;">6</span><span class="idx">🟢 🔴</span></span>
+                  <span class="acell dim" style="padding:0.75cqw;"><span class="v" style="font-size:2.6cqw;">4</span><span class="idx">🟢 🔴</span></span>
+                  <span class="acell dim" style="padding:0.75cqw;"><span class="v" style="font-size:2.6cqw;">2</span><span class="idx">🟢 🔴</span></span>
+                  <span class="acell cur" style="padding:0.75cqw;"><span class="v" style="font-size:2.6cqw;">9</span><span class="idx">🟢 ⚪</span></span>
+                </div>
+                <div style="font-size:1.95cqw; font-weight:700; text-align:center;">9 連踢 4 個 ➔ 用完離場券永不再回來！</div>
+              </div>
+              <div class="card-box" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:0.8cqw;">
+                <div style="font-family:var(--mono); font-size:2.1cqw; color:var(--coral); font-weight:700;">總進出次數 ≤ 2n</div>
+                <div class="h-serif" style="font-size:5.4cqw;">Time O(n)</div>
+                <div style="font-family:var(--mono); font-size:2.4cqw; color:var(--muted); font-weight:600;">Space O(k)</div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 全部最多操作 2n 次，均攤就是嚴格的 O(n)！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">13 · 均攤 O(n) 兩張門票證明</span>
+          <span class="cell-time">13-amortized-on.html · <span class="time-tag" data-frame="13">368.5–404.4s (35.91s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>[8,6,4,2] 持綠紅雙票入場；9 進場觸發紅點逐一打孔消逝，右側大字鎖定「≤ 2n ➔ Time O(n)」。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: crossfade</span><span class="role-chip">benefit · dataviz-countup</span></div>
+      </article>
+
+      <!-- Frame 14 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-14">
+          <div class="safe-top">
+            <div class="kicker"><span><span class="spk">✱</span> INTERVIEW SURVIVAL KIT</span><span class="pill">實戰保命錦囊</span></div>
+            <div class="triptych">
+              <div class="tile-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-family:var(--mono); font-size:1.85cqw; color:var(--coral); font-weight:700;">① 忘記 Deque 備案</div>
+                <div style="font-size:2.6cqw; font-weight:700; line-height:1.25;">Max-Heap<br>＋延遲刪除</div>
+                <div style="font-family:var(--mono); font-size:1.9cqw; color:var(--muted); font-weight:600;">O(n log n) 穩過</div>
+              </div>
+              <div class="tile-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-family:var(--mono); font-size:1.85cqw; color:var(--green); font-weight:700;">② 改求視窗最小值</div>
+                <div style="font-family:var(--mono); font-size:3cqw; font-weight:700;">&lt;= <span style="color:var(--green);">➔ &gt;=</span></div>
+                <div style="font-size:1.85cqw; color:var(--muted); font-weight:600;">只改一個符號，變單調遞增</div>
+              </div>
+              <div class="card-box" style="border-color:var(--red); display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="font-family:var(--mono); font-size:1.85cqw; color:var(--red); font-weight:700;">③ 新手 3 大地雷</div>
+                <div style="font-size:1.95cqw; line-height:1.62; font-weight:600;">
+                  ✗ 直接存數值<br>
+                  ✗ 取值忘判 !empty()<br>
+                  ✗ i &lt; k-1 搶記答案
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 別存數值、判空再取值、滿 k 格才記答案</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">14 · 面試錦囊：備案、變形與 3 大坑</span>
+          <span class="cell-time">14-interview-faq.html · <span class="time-tag" data-frame="14">404.4–435.8s (31.47s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>三張大字實戰錦囊卡依序亮起，符號翻轉 `<= ➔ >=` 與三大坑紅叉逐條點亮。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: push-slide LEFT</span><span class="role-chip">benefit · grid-card</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================== ACT 5 ==================== -->
+  <section class="act-section">
+    <div class="act-bar">
+      <h2 class="act-title">Act 5 · 定格記憶與收尾</h2>
+      <span class="act-tag">FRAME 15 · RECAP LOCKUP</span>
+    </div>
+    <div class="grid-yt">
+
+      <!-- Frame 15 -->
+      <article class="cell-wrap">
+        <div class="stage" id="frame-15">
+          <div class="safe-top" style="align-items:center; text-align:center; justify-content:center; gap:2.4cqw;">
+            <div class="kicker" style="justify-content:center; gap:1cqw;"><span class="spk">✱</span><span>LEETCODE 239 · 考前 10 秒定格複習</span></div>
+            <div class="h-serif" style="font-size:5.1cqw;">存索引不存值 · 單調雙端佇列</div>
+            <div style="display:flex; gap:1.6cqw; width:100%; justify-content:center;">
+              <span class="tile-box" style="font-size:2.45cqw; font-weight:700; padding:1.2cqw 2.2cqw;">① 頭出框就踢</span>
+              <span class="tile-box" style="font-size:2.45cqw; font-weight:700; padding:1.2cqw 2.2cqw;">② 尾比我小就踢</span>
+              <span class="tile-box" style="font-size:2.45cqw; font-weight:700; padding:1.2cqw 2.2cqw; border-color:var(--coral); color:#8F4730;">③ 隊頭就是答案</span>
+            </div>
+            <div style="font-family:var(--mono); font-size:2.25cqw; color:var(--muted); font-weight:600;">
+              Time O(n) · Space O(k) · 一遍掃完滑動視窗最大值
+            </div>
+          </div>
+          <div class="keepout-band">
+            <span class="yt-cap-sample"><span class="yt-cap-meta">Bottom 17% 字幕保留區</span> 祝你面試一次寫過 LeetCode 239！</span>
+          </div>
+        </div>
+        <div class="cell-head">
+          <span class="cell-name">15 · 一張圖帶走：定格複習</span>
+          <span class="cell-time">15-recap.html · <span class="time-tag" data-frame="15">435.8–452.7s (16.88s)</span></span>
+        </div>
+        <p class="cell-note"><b>首動：</b>5.1cqw 主標題與三口訣卡片依序定格亮起，最後 5 秒純淨留白靜止收尾，讓口訣印在腦海。</p>
+        <div class="cell-chips"><span class="seam-chip">transition_in: crossfade</span><span class="role-chip">branding · titlecard-reveal</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================== CLOSING CARDS ==================== -->
+  <section class="closing-grid">
+    <div class="ref-card">
+      <h3>轉場脈絡表（Seam Map · 15 Frames）</h3>
+      <div class="seam-strip">
+        <span class="seam-node">01 破題</span><span class="seam-arrow">crossfade</span>
+        <span class="seam-node">02 題意</span><span class="seam-arrow">crossfade</span>
+        <span class="seam-node">03 TLE</span><span class="seam-arrow">cut</span>
+        <span class="seam-node">04 Deque</span><span class="seam-arrow">push-slide ◀</span>
+        <span class="seam-node">05 存索引</span><span class="seam-arrow">push-slide ◀</span>
+        <span class="seam-node">06 必踢</span><span class="seam-arrow">push-slide ◀</span>
+        <span class="seam-node">07 要留</span><span class="seam-arrow">crossfade</span>
+        <span class="seam-node">08 三口訣</span><span class="seam-arrow">cut</span>
+        <span class="seam-node">09 實戰1</span><span class="seam-arrow">push-slide ◀</span>
+        <span class="seam-node">10 實戰2</span><span class="seam-arrow">push-slide ◀</span>
+        <span class="seam-node">11 實戰3</span><span class="seam-arrow">cut</span>
+        <span class="seam-node">12 C++代碼</span><span class="seam-arrow">crossfade</span>
+        <span class="seam-node">13 均攤O(n)</span><span class="seam-arrow">push-slide ◀</span>
+        <span class="seam-node">14 面試錦囊</span><span class="seam-arrow">crossfade</span>
+        <span class="seam-node">15 總結</span>
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <h3>YouTube 16:9 字級與設計規範（Tokens &amp; Bans）</h3>
+      <div class="swatch-row">
+        <span class="swatch"><i style="background:#FAF9F5"></i>Cream #FAF9F5</span>
+        <span class="swatch"><i style="background:#EFE9DE"></i>Tile #EFE9DE</span>
+        <span class="swatch"><i style="background:#141413"></i>Ink #141413</span>
+        <span class="swatch"><i style="background:#CC785C"></i>Coral #CC785C</span>
+        <span class="swatch"><i style="background:#181715"></i>Navy #181715</span>
+        <span class="swatch"><i style="background:#5A8A55"></i>Max #5A8A55</span>
+        <span class="swatch"><i style="background:#B8483A"></i>Expire #B8483A</span>
+      </div>
+      <ul class="ban-list">
+        <li><b>YouTube 字級下限：</b>主標題 4.8–5.8cqw、重點卡 2.5–3.2cqw、陣列數字 3.3cqw、程式碼與內文皆 ≥ 1.8cqw。</li>
+        <li><b>字幕安全區：</b>主內容嚴格留在畫面<b>上方 83%</b>，底部 17% 保留給 YouTube 樣式大字字幕條（約 2.3cqw）。</li>
+        <li><b>禁止清單：</b>禁用純白/純黑、禁用霓虹發光、禁用開頭一次倒出文字、禁用彈跳過度動畫（統一 `power3` 長尾平順收斂）。</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
